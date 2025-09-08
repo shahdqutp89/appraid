@@ -1,0 +1,10 @@
+git submodule add https://github.com/shahdqutp89/Development devolpment        #to add a submodule repo to the main repo
+git submodule update --init --recursive                                        #To initialize and update submodules
+git submodule update --remote                                                  #To update submodules to the latest version
+git submodule update --remote --merge                                          #Update submodules
+git pull origin main branchname                                                #To pull latest changes
+git push origin main branchname                                                #To push your commits
+git checkout -b branchname                                                     #create and switch to a new branch
+git checkout main                                                              #switch back to main branch
+git merge branchname                                                           #merging the main branch with another branch (but make sure that you are in the main branch when writing this command)
+git rebase -i HEAD~3                                                           #squash last 3 commits into one
