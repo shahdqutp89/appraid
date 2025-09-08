@@ -10,3 +10,6 @@
 [submodule "testing"]
 	path = testing
 	url = https://github.com/shahdqutp89/Testing
+[submodule "devolpment"]
+	path = devolpment
+	url = https://github.com/shahdqutp89/Development
