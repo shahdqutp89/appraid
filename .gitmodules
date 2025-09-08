@@ -4,3 +4,9 @@
 [submodule "submodule2"]
 	path = submodule2
 	url = https://github.com/shahdqutp89/Submodule2.git
+[submodule "development"]
+	path = development
+	url = https://github.com/shahdqutp89/Testing
+[submodule "testing"]
+	path = testing
+	url = https://github.com/shahdqutp89/Testing
