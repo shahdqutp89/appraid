@@ -8,3 +8,17 @@ git checkout -b branchname                                                     #
 git checkout main                                                              #switch back to main branch
 git merge branchname                                                           #merging the main branch with another branch (but make sure that you are in the main branch when writing this command)
 git rebase -i HEAD~3                                                           #squash last 3 commits into one
+git branch                                                                     # Lists all local branches
+git branch -d <branch-name>                                                    # Deletes the branch after it's merged
+git branch -D <branch-name>                                                    # Force deletes the branch (even if not merged)
+git branch -m <new-branch-name>                                                # Renames the current branch
+git add <conflicted-file>                                                      # Mark file as resolved
+git commit                                                                     # Complete the merge
+git rebase main                                                                #Rebase the newbranch onto the main branch
+git rebase --skip                                                              # Skip the current commit and continue rebasing
+
+# Fix conflicts in the files manually
+git add <resolved-file>                                                        # Stage the resolved file
+git rebase --continue                                                          # Continue the rebase process
+
+git rebase --abort                                                             # Abort the rebase process and return to the state before starting the rebase
