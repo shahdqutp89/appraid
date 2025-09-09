@@ -22,3 +22,28 @@ git add <resolved-file>                                                        #
 git rebase --continue                                                          # Continue the rebase process
 
 git rebase --abort                                                             # Abort the rebase process and return to the state before starting the rebase
+git push --force                                                               # Push with force (because history was rewritten)
+
+
+
+##########################################
+# 📘 Git: Merge vs Rebase (Comparison)
+##########################################
+
+# MERGE:
+# - Combines branches and preserves the full history.
+# - Creates a new "merge commit".
+# - Easier for teams, as it keeps the timeline clear.
+
+# Example:
+git checkout main
+git merge feature-branch  # Creates a merge commit
+
+# REBASE:
+# - Rewrites the commit history to make it linear.
+# - Avoids merge commits.
+# - Useful for a clean, linear history (especially before pushing).
+
+# Example:
+git checkout feature-branch
+git rebase main  # Rewrites the base of feature-branch to latest main
