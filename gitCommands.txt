@@ -47,3 +47,4 @@ git merge feature-branch  # Creates a merge commit
 # Example:
 git checkout feature-branch
 git rebase main  # Rewrites the base of feature-branch to latest main
+
