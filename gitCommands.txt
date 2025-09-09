@@ -22,3 +22,4 @@ git add <resolved-file>                                                        #
 git rebase --continue                                                          # Continue the rebase process
 
 git rebase --abort                                                             # Abort the rebase process and return to the state before starting the rebase
+git push --force                                                               # Push with force (because history was rewritten)
