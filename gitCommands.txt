@@ -25,25 +25,49 @@ git rebase --abort                                                             #
 git push --force                                                               # Push with force (because history was rewritten)
 
 
+##################################################
+# Git Squash: Rebase vs Merge (Short Version)
+##################################################
 
-##########################################
-# 📘 Git: Merge vs Rebase (Comparison)
-##########################################
-
-# MERGE:
-# - Combines branches and preserves the full history.
-# - Creates a new "merge commit".
-# - Easier for teams, as it keeps the timeline clear.
-
-# Example:
-git checkout main
-git merge feature-branch  # Creates a merge commit
-
-# REBASE:
-# - Rewrites the commit history to make it linear.
-# - Avoids merge commits.
-# - Useful for a clean, linear history (especially before pushing).
+# 🔹 SQUASH WITH REBASE (Local - Before PR)
+# - Done locally using: git rebase -i HEAD~N
+# - Rewrites commit history
+# - Requires: git push --force
+# - Useful for cleaning up before sharing code
 
 # Example:
-git checkout feature-branch
-git rebase main  # Rewrites the base of feature-branch to latest main
+#   git rebase -i HEAD~3
+#   # change picks to squash, save
+#   git push --force
+
+# 🔹 SQUASH WITH MERGE (GitHub - During PR)
+# - Done on GitHub when merging a PR
+# - All commits combined into one on main
+# - No changes to feature branch
+# - No force-push needed
+
+# Steps:
+#   git push origin feature/branch
+#   # On GitHub → Open PR → "Squash and merge"
+
+##############################################
+# Key Differences
+##############################################
+
+# Where?
+#   Rebase squash → Local
+#   Merge squash  → GitHub
+
+# When?
+#   Rebase squash → Before PR
+#   Merge squash  → During PR
+
+# History?
+#   Rebase → Rewrites branch history
+#   Merge → Leaves branch history untouched
+
+# Push?
+#   Rebase → Needs force-push
+#   Merge  → No force-push
+
+##################################################
