@@ -69,5 +69,4 @@ git push --force                                                               #
 # Push?
 #   Rebase → Needs force-push
 #   Merge  → No force-push
-
 ##################################################
