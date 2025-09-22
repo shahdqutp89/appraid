@@ -1,8 +1,8 @@
-name: Auto Merge PR
+name: PR Quality & Auto Merge
 
 on:
   pull_request:
-    types: [labeled]
+    types: [opened, reopened, labeled, unlabeled, synchronize]
   issue_comment:
     types: [created]
 
@@ -11,14 +11,36 @@ permissions:
   contents: write
 
 jobs:
+  quality-checks:
+    runs-on: ubuntu-latest
+    if: |
+      (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'check')) || 
+      (github.event_name == 'issue_comment' && github.event.issue.pull_request && contains(github.event.comment.body, 'recheck'))
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install black
+
+      - name: Run Black formatting check
+        run: black --check --diff $(git ls-files '*.py')
+
+
+      - name: Verify Python compilation
+        run: python -m compileall -q .
+
   merge-pr:
     runs-on: ubuntu-latest
     if: |
       (github.event_name == 'pull_request' &&
        github.event.action == 'labeled' &&
-       github.event.label.name == 'merge')
-      || (github.event_name == 'issue_comment' &&
-          contains(github.event.comment.body, 'merge'))
+       github.event.label.name == 'merge') ||
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request &&
+       contains(github.event.comment.body, 'merge'))
     steps:
       - name: Enable auto-merge
         uses: peter-evans/enable-pull-request-automerge@v3
