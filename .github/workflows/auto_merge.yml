@@ -1,3 +1,4 @@
+---
 name: PR Quality & Auto Merge
 
 on:
@@ -14,20 +15,17 @@ jobs:
   quality-checks:
     runs-on: ubuntu-latest
     if: |
-      (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'check')) || 
+      (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'check')) ||
       (github.event_name == 'issue_comment' && github.event.issue.pull_request && contains(github.event.comment.body, 'recheck'))
     steps:
       - uses: actions/checkout@v4
 
-      # YAML Linting
+      # YAML linting
       - name: Lint YAML files
         uses: ibiqlik/action-yamllint@v3
         with:
           file_or_dir: .github/workflows/*.yml
-          yamllint_strict: true
-          yamllint_comment: true
-        env:
-          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          strict: true
 
       - uses: actions/setup-python@v5
         with:
@@ -56,5 +54,7 @@ jobs:
         uses: peter-evans/enable-pull-request-automerge@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          pull-request-number: ${{ github.event.pull_request.number || github.event.issue.number }}
+          pull-request-number: ${{ 
+            github.event.pull_request.number || github.event.issue.number 
+          }}
           merge-method: squash
