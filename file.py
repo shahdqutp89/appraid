@@ -6,6 +6,3 @@ def factorial(n):
 
 # Get user input
 number = int(input("Enter a number to calculate its factorial: "))
-
-# Call the factorial function and display the result
-print(f"The factorial of {number} is: {factorial(number)}")
