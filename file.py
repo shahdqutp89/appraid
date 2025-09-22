@@ -1,4 +1,3 @@
-# Function to calculate factorial of a number
 def factorial(n):
     # If the number is less than or equal to 1, return 1 (base case)
     if n <= 1:
