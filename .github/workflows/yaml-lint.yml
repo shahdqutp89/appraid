@@ -31,6 +31,6 @@ jobs:
         run: |
           python3 -m pip install yamllint
       - name: Lint YAML by hand
-        run: yamllint path/to/your/file.yaml
+        run: yamllint .github/workflows/auto_merge.yml
 
       # optional: upload log or show output
